@@ -21,7 +21,7 @@ ENV LANG en_US.UTF-8
 RUN for i in "" -updates -backports -security; do echo "deb mirror://mirrors.ubuntu.com/mirrors.txt xenial${i} main restricted universe multiverse"; done > /etc/apt/sources.list
 
 # PHP 7
-RUN apt-get update && apt-get install -y software-properties-common \
+RUN apt-get update && apt-get install -y software-properties-common systemd \
   && apt-add-repository ppa:ondrej/php && apt-get purge -y software-properties-common \
   && apt-get -qqy update \
   && apt-get install -qqy nginx-light php7.0-fpm php-xdebug supervisor \
