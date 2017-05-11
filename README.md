@@ -6,14 +6,14 @@ git clone https://github.com/JMSDOnline/quickbox_dashboard_docker.git /etc/quick
 cd /etc/quickbox && bash install.sh
 ```
 
-Now build the image (this will soon be hosted on DockerHub, making this much simpler, hell, it will all be in one package)
+Now pull the image
 ```
-docker build -t quickbox-dashboard:latest .
+docker pull quickboxio/quickbox-dashboard:development
 ```
 
 Next, run it
 ```
-docker run -i -t -d -p 80:80 quickbox-dashboard:latest /bin/bash
+docker run -i -t -d -p 80:80 quickboxio/quickbox-dashboard:development /bin/bash
 ```
 
 You can enter the image with `docker exec -it [container-id] bash`
