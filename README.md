@@ -3,7 +3,7 @@
 Install docker setup with the following:
 ```
 git clone https://github.com/JMSDOnline/quickbox_dashboard_docker.git /etc/quickbox
-bash /etc/quickbox/install.sh
+cd /etc/quickbox && bash install.sh
 ```
 
 Now build the image (this will soon be hosted on DockerHub, making this much simpler, hell, it will all be in one package)
