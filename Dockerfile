@@ -51,10 +51,6 @@ RUN apt-get -qqy update && \
     mkdir -p /opt/quickbox/logs/ && \
     mkdir -p /opt/quickbox/dashboard
 
-#RUN for i in opcache mcrypt xml; do phpenmod -v 7.0 ${i}; done
-
-#RUN for i in nginx php7.0-fpm; do service ${i} restart; done
-
 ################## BEGIN INSTALLATION ######################
 
 ADD dashboard /opt/quickbox/dashboard
@@ -66,4 +62,5 @@ EXPOSE 80 443
 
 # Default port to execute the entrypoint (Nginx)
 CMD ["--port 80"]
-CMD ["nginx", "-g", "daemon off;"]
+CMD /usr/sbin/nginx -g "daemon off;"
+#CMD ["nginx", "-g", "daemon off;"]
