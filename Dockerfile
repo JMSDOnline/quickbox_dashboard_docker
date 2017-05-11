@@ -51,9 +51,9 @@ RUN apt-get -qqy update && \
     mkdir -p /opt/quickbox/logs/ && \
     mkdir -p /opt/quickbox/dashboard
 
-RUN for i in opcache mcrypt xml; do phpenmod -v 7.0 ${i}; done
+#RUN for i in opcache mcrypt xml; do phpenmod -v 7.0 ${i}; done
 
-RUN for i in nginx php7.0-fpm; do service ${i} restart; done
+#RUN for i in nginx php7.0-fpm; do service ${i} restart; done
 
 ################## BEGIN INSTALLATION ######################
 
