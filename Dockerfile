@@ -61,6 +61,7 @@ ADD dashboard /opt/quickbox/dashboard
 EXPOSE 80 443
 
 # Default port to execute the entrypoint (Nginx)
-CMD ["--port 80"]
-CMD /usr/sbin/nginx -g "daemon off;"
+#CMD ["--port 80"]
+CMD ["/bin/bash", "nginx", "-g", "daemon off;"]
+#CMD /usr/sbin/nginx -g "daemon off;"
 #CMD ["nginx", "-g", "daemon off;"]
