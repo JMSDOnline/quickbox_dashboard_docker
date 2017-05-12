@@ -13,7 +13,7 @@ MAINTAINER QuickBox.IO
 ARG DEBIAN_FRONTEND=noninteractive
 RUN apt-get clean && apt-get -qqy update
 RUN apt-get -qqy install locales build-essential software-properties-common \
-                          python-software-properties apt-transport-https
+    python-software-properties apt-transport-https
 RUN locale-gen en_US.UTF-8 fr_CA.UTF-8
 ENV LANG en_US.UTF-8
 
@@ -33,13 +33,12 @@ RUN echo 'fastcgi_read_timeout 7200s;' >> /etc/nginx/fastcgi_params
 #COPY xdebug.ini /etc/php/mods-available/xdebug.ini
 
 # Nginx
-#RUN { cat /etc/nginx/nginx.conf; } > /tmp/nginx.conf && mv /tmp/nginx.conf /etc/nginx/nginx.conf
 COPY default-nginx-conf-dashboard.conf /etc/nginx/sites-available/default
 COPY nginx.conf /etc/nginx/nginx.conf
 #COPY supervisord.conf /etc/supervisor/conf.d/supervisord.conf
 
 ENV APTLIST="ca-certificates-mono bzip2 libcurl4-openssl-dev wget unzip \
-              htop iotop git lsb-release sudo apt-utils nano curl"
+    htop iotop git lsb-release sudo apt-utils nano curl"
 
 # Install packages
 RUN apt-get -qqy update && \
