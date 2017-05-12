@@ -33,8 +33,9 @@ RUN echo 'fastcgi_read_timeout 7200s;' >> /etc/nginx/fastcgi_params
 #COPY xdebug.ini /etc/php/mods-available/xdebug.ini
 
 # Nginx
-RUN { echo 'daemon off;'; cat /etc/nginx/nginx.conf; } > /tmp/nginx.conf && mv /tmp/nginx.conf /etc/nginx/nginx.conf
+#RUN { cat /etc/nginx/nginx.conf; } > /tmp/nginx.conf && mv /tmp/nginx.conf /etc/nginx/nginx.conf
 COPY default-nginx-conf-dashboard.conf /etc/nginx/sites-available/default
+COPY nginx.conf /etc/nginx/nginx.conf
 #COPY supervisord.conf /etc/supervisor/conf.d/supervisord.conf
 
 ENV APTLIST="ca-certificates-mono bzip2 libcurl4-openssl-dev wget unzip \
@@ -54,6 +55,7 @@ RUN apt-get -qqy update && \
 ################## BEGIN INSTALLATION ######################
 
 ADD dashboard /opt/quickbox/dashboard
+RUN chown -R www-data:www-data /opt/quickbox/dashboard
 
 ##################### INSTALLATION END #####################
 
