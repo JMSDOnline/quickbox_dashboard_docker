@@ -27,24 +27,27 @@ sub_title=${bold}${yellow}; repo_title=${black}${on_green}; message_title=${whit
 function _string() { perl -le 'print map {(a..z,A..Z,0..9)[rand 62] } 0..pop' 15 ; }
 #################################################################################
 
-# adduser function (i)
-function _adduser() {
+# import_user function (i)
+function _import_user() {
+  REALM="QuickBox";
+  HTPASSWD="/etc/htpasswd";
   theshell="/bin/bash";
-  echo "${bold}${yellow}Add a Master Account user to sudoers${normal}";
-  echo -n "Username: "; read user
-  username=$(echo "$user"|sed 's/.*/\L&/')
-  echo -n "Password: (hit enter to generate a password) "; read 'password'
+  password="PASSWD";
+  genpass="GENPASS";
+  useradd "${username}" -m -G www-data -s "${theshell}"
   if [[ ! -z "${password}" ]]; then
     echo "setting password to ${password}"
     passwd=${password}
-    sed -i "s/PASSWD/${password}/g" usr/import_user
+    echo "${username}:${passwd}" | chpasswd >>"${OUTTO}" 2>&1
+    (echo -n "${username}:${REALM}:" && echo -n "${username}:${REALM}:${passwd}" | md5sum | awk '{print $1}' ) >> "${HTPASSWD}"
   else
     echo "setting password to ${genpass}"
     passwd=${genpass}
-    sed -i "s/GENPASS/${genpass}/g" usr/import_user
+    echo "${username}:${passwd}" | chpasswd >>"${OUTTO}" 2>&1
+    (echo -n "${username}:${REALM}:" && echo -n "${username}:${REALM}:${passwd}" | md5sum | awk '{print $1}' ) >> "${HTPASSWD}"
   fi
-  printf "${username}:${passwd}" > /etc/quickbox/usr/"$username".info.db
+  printf "${username}:${passwd}" > /root/"$username".info.db
   echo
 }
 
-_adduser
+_import_user
