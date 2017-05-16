@@ -48,6 +48,7 @@ RUN apt-get -qqy update && \
     apt-get -qqy upgrade && \
 
     mkdir -p /opt/quickbox/ && \
+    mkdir -p /opt/quickbox/cmd/ && \
     mkdir -p /opt/quickbox/logs/ && \
     mkdir -p /opt/quickbox/dashboard
 
@@ -56,7 +57,13 @@ RUN apt-get -qqy update && \
 ADD dashboard /opt/quickbox/dashboard
 RUN chown -R www-data:www-data /opt/quickbox/dashboard
 
+ADD createUser /opt/quickbox/cmd
+RUN chmod u+x /opt/quickbox/cmd/createUser
+RUN /opt/quickbox/cmd/createUser
+
 ##################### INSTALLATION END #####################
+
+RUN service php7.0-fpm restart && service nginx restart
 
 # Expose the default port(s)
 EXPOSE 80 443
