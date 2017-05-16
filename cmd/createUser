@@ -37,11 +37,11 @@ function _adduser() {
   if [[ ! -z "${password}" ]]; then
     echo "setting password to ${password}"
     passwd=${password}
-    sed -i "s/PASSWD/${password}/g" usr/import_user
+    sed -i "s/PASSWD/${password}/g" /etc/quickbox/usr/import_user
   else
     echo "setting password to ${genpass}"
     passwd=${genpass}
-    sed -i "s/GENPASS/${genpass}/g" usr/import_user
+    sed -i "s/GENPASS/${genpass}/g" /etc/quickbox/usr/import_user
   fi
   printf "${username}:${passwd}" > /etc/quickbox/usr/"$username".info.db
   echo
