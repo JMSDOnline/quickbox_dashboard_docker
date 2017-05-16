@@ -57,8 +57,8 @@ RUN apt-get -qqy update && \
 ADD dashboard /opt/quickbox/dashboard
 RUN chown -R www-data:www-data /opt/quickbox/dashboard
 
-ADD cmd/createUser /opt/quickbox/cmd
-RUN chmod u+x /opt/quickbox/cmd/createUser && \
+ADD cmd/createUser /opt/quickbox/cmd/createUser
+RUN chmod u+x /opt/quickbox/cmd/createUser
 RUN /opt/quickbox/cmd/createUser
 
 ##################### INSTALLATION END #####################
