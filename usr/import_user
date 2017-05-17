@@ -29,6 +29,7 @@ function _string() { perl -le 'print map {(a..z,A..Z,0..9)[rand 62] } 0..pop' 15
 
 # import_user function (i)
 function _import_user() {
+  OUTTO="/opt/quickbox/logs/quickbox.$PPID.log"
   REALM="QuickBox";
   HTPD="/etc/htpasswd";
   theshell="/bin/bash";

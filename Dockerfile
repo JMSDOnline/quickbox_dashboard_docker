@@ -37,12 +37,13 @@ COPY default-nginx-conf-dashboard.conf /etc/nginx/sites-available/default
 COPY nginx.conf /etc/nginx/nginx.conf
 #COPY supervisord.conf /etc/supervisor/conf.d/supervisord.conf
 
-ENV APTLIST="ca-certificates-mono bzip2 libcurl4-openssl-dev wget unzip \
-    htop iotop git lsb-release sudo apt-utils nano curl"
+#ENV APTLIST="ca-certificates-mono bzip2 libcurl4-openssl-dev wget unzip \
+#    htop iotop git lsb-release sudo apt-utils nano curl"
 
 # Install packages
 RUN apt-get -qqy update && \
-    apt-get -qqy install $APTLIST && \
+    apt-get -qqy install ca-certificates-mono bzip2 libcurl4-openssl-dev wget unzip && \
+    apt-get -qqy install htop iotop git lsb-release sudo apt-utils nano curl && \
     apt-get -qq clean && \
     apt-get -qqy update && \
     apt-get -qqy upgrade && \
