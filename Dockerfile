@@ -49,6 +49,7 @@ RUN apt-get -qqy update && \
 
     mkdir -p /opt/quickbox/ && \
     mkdir -p /opt/quickbox/cmd/ && \
+    mkdir -p /opt/quickbox/usr/ && \
     mkdir -p /opt/quickbox/logs/ && \
     mkdir -p /opt/quickbox/dashboard
 
