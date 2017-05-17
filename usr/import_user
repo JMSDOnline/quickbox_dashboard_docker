@@ -32,6 +32,7 @@ function _import_user() {
   REALM="QuickBox";
   HTPD="/etc/htpasswd";
   theshell="/bin/bash";
+  username="UNAME"
   password="PASSWD";
   genpass="GENPASS";
   useradd "${username}" -m -G www-data -s "${theshell}"

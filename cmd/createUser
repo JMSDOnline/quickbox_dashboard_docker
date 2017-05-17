@@ -33,6 +33,7 @@ function _adduser() {
   echo "${bold}${yellow}Add a Master Account user to sudoers${normal}";
   echo -n "Username: "; read user
   username=$(echo "$user"|sed 's/.*/\L&/')
+  sed -i "s/UNAME/${username}/g" /etc/quickbox/usr/import_user
   echo -n "Password: (hit enter to generate a password) "; read 'password'
   if [[ ! -z "${password}" ]]; then
     echo "setting password to ${password}"
