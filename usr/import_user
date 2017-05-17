@@ -30,7 +30,7 @@ function _string() { perl -le 'print map {(a..z,A..Z,0..9)[rand 62] } 0..pop' 15
 # import_user function (i)
 function _import_user() {
   REALM="QuickBox";
-  HTPASSWD="/etc/htpasswd";
+  HTPD="/etc/htpasswd";
   theshell="/bin/bash";
   password="PASSWD";
   genpass="GENPASS";
@@ -39,12 +39,12 @@ function _import_user() {
     echo "setting password to ${password}"
     passwd=${password}
     echo "${username}:${passwd}" | chpasswd >>"${OUTTO}" 2>&1
-    (echo -n "${username}:${REALM}:" && echo -n "${username}:${REALM}:${passwd}" | md5sum | awk '{print $1}' ) >> "${HTPASSWD}"
+    (echo -n "${username}:${REALM}:" && echo -n "${username}:${REALM}:${passwd}" | md5sum | awk '{print $1}' ) >> "${HTPD}"
   else
     echo "setting password to ${genpass}"
     passwd=${genpass}
     echo "${username}:${passwd}" | chpasswd >>"${OUTTO}" 2>&1
-    (echo -n "${username}:${REALM}:" && echo -n "${username}:${REALM}:${passwd}" | md5sum | awk '{print $1}' ) >> "${HTPASSWD}"
+    (echo -n "${username}:${REALM}:" && echo -n "${username}:${REALM}:${passwd}" | md5sum | awk '{print $1}' ) >> "${HTPD}"
   fi
   printf "${username}:${passwd}" > /root/"$username".info.db
   echo
